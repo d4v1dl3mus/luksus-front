@@ -1,0 +1,7 @@
+{
+  "name": "Luksus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
