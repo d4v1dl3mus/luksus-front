@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="balance">Saldo: $50,000</div>
+  <h1>Luksus Casino</h1>
+
+  <!-- Tablero de juego -->
+  <div id="game-board">
+    <div *ngFor="let cell of cells; let i = index" class="cell"
+      [ngClass]="{ 'mine': mines.includes(i), 'safe': revealedCells.has(i) }" (click)="revealCell(i)"></div>
+  </div>
+
+  <!-- Controles para apuesta y trampas -->
+  <div id="controls">
+    <!-- Contenedor para "Máx. ganancias" y "Trampas" -->
+    <div id="max-win-container">
+      <ion-label id="max-win">Máx. ganancias: {{ maxWin | currency: 'COP' }}</ion-label>
+      <div id="mine-count-container">
+        <label for="mine-count">Trampas</label>
+        <button (click)="changeMineCount(-2)">-</button>
+        <ion-input type="number" [(ngModel)]="mineCount" readonly></ion-input>
+        <button (click)="changeMineCount(2)">+</button>
+      </div>
+    </div>
+
+
+    <!-- Contenedor para "Apuesta" y "Tocar" -->
+    <div id="bet-action-container">
+      <div id="bet-container">
+        <button (click)="changeBet(-1000)">-</button>
+        <ion-input type="number" [(ngModel)]="betAmount" min="500"></ion-input>
+        <button (click)="changeBet(1000)">+</button>
+      </div>
+      <button id="startGame" (click)="startGame()">Tocar</button>
+    </div>
+    <button id="reward" onclick="withdraw()">Retirarse: $0</button>
+  </div>
+</div>

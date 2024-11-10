@@ -1,0 +1,180 @@
+#balance {
+  font-size: 18px;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: #1b0030;
+  color: white;
+}
+
+/* Tablero del juego */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 5px;
+  margin-top: 20px;
+  border: 2px solid #333;
+  padding: 10px;
+  background-color: #3e004a;
+  /* Fondo morado */
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  animation: boardGlow 3s ease-in-out infinite alternate;
+}
+
+/* Animación de brillo para el tablero */
+@keyframes boardGlow {
+  from {
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+
+  to {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+}
+
+/* Estilo de las celdas con animación */
+.cell {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #054273;
+  /* Azul oscuro */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cell.mine {
+  background-color: #d62828;
+  /* Rojo brillante para las minas */
+}
+
+.cell.safe {
+  background-color: #005f73;
+  /* Verde azulado para celdas seguras */
+}
+
+.cell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* Controles */
+#controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  background-color: #1b0030;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Sección horizontal para "Máx. ganancias" y "Trampas" */
+#max-win-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#max-win {
+  color: #66ff66;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Sección vertical para "Apuesta" y "Tocar" */
+#bet-action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+#bet-container {
+  display: flex;
+  align-items: center;
+  gap: 98px;
+  background-color: #333;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+#bet-container button,
+#bet-container input {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  width: 60px;
+}
+
+#startGame,
+#reward {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#startGame {
+  background-color: #0044ff;
+  color: white;
+}
+
+#reward {
+  background-color: #ffcc00;
+  color: #1b0030;
+  display: none;
+}
+
+/* Contenedor para "Trampas" con botones de incremento y decremento */
+#mine-count-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+#mine-count-container button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#mine-count-container ion-input {
+  text-align: center;
+}
+
+#mine-count {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  width: 40px;
+}
