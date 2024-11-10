@@ -105,12 +105,12 @@ export class GameBoardComponent {
     if (!this.gameActive) return;
     this.balance += this.reward;
     this.resetGame();
-    this.waiting = false;
   }
 
   resetGame() {
     this.gameActive = false;
     this.reward = 0;
     this.revealedCells.clear();
+    this.waiting = false;
   }
 }
