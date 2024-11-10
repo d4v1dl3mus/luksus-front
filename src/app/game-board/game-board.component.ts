@@ -17,16 +17,32 @@ export class GameBoardComponent {
   mines: number[] = [];
   waiting: boolean = false;
 
-  multipliers1Mine: number[] = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.31, 1.35, 1.40, 1.45, 1.50, 1.55, 1.61];
-  multipliers3Mines: number[] = [1.14, 1.30, 1.49, 1.72, 1.98, 2.28, 2.63, 3.03, 3.48, 3.99, 4.56];
-  multipliers5Mines: number[] = [1.19, 1.51, 1.93, 2.49, 3.27, 4.36, 5.88, 8.00, 10.98];
-  multipliers7Mines: number[] = [1.27, 1.62, 2.12, 2.85, 3.92, 5.50, 7.95, 11.80];
+  multipliers1Mine: number[] = [
+    1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.31, 1.35,
+    1.40, 1.45, 1.50, 1.55, 1.61, 1.67, 1.73, 1.79, 1.86, 1.93,
+    2.00, 2.08, 2.16
+  ];
+  multipliers3Mines: number[] = [
+    1.14, 1.30, 1.49, 1.72, 1.98, 2.28, 2.63, 3.03, 3.48, 3.99,
+    4.56, 5.20, 5.91, 6.70, 7.57, 8.53, 9.58, 10.74, 12.00, 13.38,
+    14.88
+  ];
+  multipliers5Mines: number[] = [
+    1.19, 1.51, 1.93, 2.49, 3.27, 4.36, 5.88, 8.00, 10.98, 15.28,
+    21.50, 30.68, 44.50, 65.68, 98.50, 151.68, 239.50, 387.68,
+    652.50
+];
+  multipliers7Mines: number[] = [
+    1.27, 1.62, 2.12, 2.85, 3.92, 5.50, 7.95, 11.80, 18.00, 28.00,
+    45.00, 75.00, 130.00, 230.00, 400.00, 700.00, 1200.00
+];
 
   rewardMultipliers: number[] = this.multipliers1Mine;
 
   changeBet(amount: number) {
     if (this.gameActive) return;
     this.betAmount = Math.max(500, this.betAmount + amount);
+    this.calculateMaxWin();
   }
 
   changeMineCount(step: number) {
