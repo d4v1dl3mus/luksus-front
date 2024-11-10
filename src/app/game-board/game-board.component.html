@@ -1,36 +1,47 @@
-<div class="container">
-  <div id="balance">Saldo: $50,000</div>
-  <h1>Luksus Casino</h1>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Luksus Casino - Juego de Minas</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <!-- Tablero de juego -->
-  <div id="game-board">
-    <div *ngFor="let cell of cells; let i = index" class="cell"
-      [ngClass]="{ 'mine': mines.includes(i), 'safe': revealedCells.has(i) }" (click)="revealCell(i)"></div>
-  </div>
+<ion-content>
+  <div class="container">
+    <div id="balance">Saldo: ${{ balance | currency: 'COP' }}</div>
 
-  <!-- Controles para apuesta y trampas -->
-  <div id="controls">
-    <!-- Contenedor para "Máx. ganancias" y "Trampas" -->
-    <div id="max-win-container">
-      <ion-label id="max-win">Máx. ganancias: {{ maxWin | currency: 'COP' }}</ion-label>
-      <div id="mine-count-container">
-        <label for="mine-count">Trampas</label>
-        <button (click)="changeMineCount(-2)">-</button>
-        <ion-input type="number" [(ngModel)]="mineCount" readonly></ion-input>
-        <button (click)="changeMineCount(2)">+</button>
-      </div>
+    <!-- Tablero de juego -->
+    <div id="game-board">
+      <div
+        *ngFor="let cell of cells; let i = index"
+        [ngClass]="{
+          cell: true,
+          mine: mines.includes(i) && !gameActive,
+          safe: revealedCells.has(i)
+        }"
+        (click)="revealCell(i)"
+      ></div>
     </div>
 
-
-    <!-- Contenedor para "Apuesta" y "Tocar" -->
-    <div id="bet-action-container">
-      <div id="bet-container">
-        <button (click)="changeBet(-1000)">-</button>
-        <ion-input type="number" [(ngModel)]="betAmount" min="500"></ion-input>
-        <button (click)="changeBet(1000)">+</button>
+    <!-- Controles para apuesta y trampas -->
+    <div id="controls">
+      <div id="max-win-container">
+        <div id="max-win">Máx. ganancias: ${{ maxWin | currency: 'COP' }}</div>
+        <div id="mine-count-container">
+          <ion-label>Trampas</ion-label>
+          <ion-button (click)="changeMineCount(-2)">-</ion-button>
+          <ion-input [(ngModel)]="mineCount" type="number" readonly></ion-input>
+          <ion-button (click)="changeMineCount(2)">+</ion-button>
+        </div>
       </div>
-      <button id="startGame" (click)="startGame()">Tocar</button>
+
+      <div id="bet-action-container">
+        <div id="bet-container">
+          <ion-button (click)="changeBet(-1000)">-</ion-button>
+          <ion-input [(ngModel)]="betAmount" type="number"></ion-input>
+          <ion-button (click)="changeBet(1000)">+</ion-button>
+        </div>
+        <ion-button id="startGame" (click)="startGame()">Tocar</ion-button>
+      </div>
+      <ion-button id="reward" *ngIf="reward > 0" (click)="withdraw()">Retirarse: {{ reward | currency: 'COP' }}</ion-button>
     </div>
-    <button id="reward" onclick="withdraw()">Retirarse: $0</button>
   </div>
-</div>
+</ion-content>
