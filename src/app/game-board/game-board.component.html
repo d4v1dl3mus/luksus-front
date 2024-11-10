@@ -39,9 +39,10 @@
           <ion-input [(ngModel)]="betAmount" type="number"></ion-input>
           <ion-button (click)="changeBet(1000)">+</ion-button>
         </div>
-        <ion-button id="startGame" (click)="startGame()">Tocar</ion-button>
+        <ion-button id="startGame" *ngIf="!reward && !waiting" (click)="startGame()">Tocar</ion-button>
+        <ion-button id="reward" *ngIf="waiting && !reward">Esperando...</ion-button>
       </div>
-      <ion-button id="reward" *ngIf="reward > 0" (click)="withdraw()">Retirarse: {{ reward | currency: 'COP' }}</ion-button>
+      <ion-button id="reward" *ngIf="reward" (click)="withdraw()">Retirarse: {{ reward | currency: 'COP' }}</ion-button>
     </div>
   </div>
 </ion-content>

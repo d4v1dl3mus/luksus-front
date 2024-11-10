@@ -15,6 +15,7 @@ export class GameBoardComponent {
   revealedCells: Set<number> = new Set();
   cells: number[] = Array(25).fill(0);
   mines: number[] = [];
+  waiting: boolean = false;
 
   multipliers1Mine: number[] = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.31, 1.35, 1.40, 1.45, 1.50, 1.55, 1.61];
   multipliers3Mines: number[] = [1.14, 1.30, 1.49, 1.72, 1.98, 2.28, 2.63, 3.03, 3.48, 3.99, 4.56];
@@ -64,6 +65,7 @@ export class GameBoardComponent {
     this.reward = 0;
     this.placeMines();
     this.calculateMaxWin();
+    this.waiting = true;
   }
 
   placeMines() {
@@ -103,6 +105,7 @@ export class GameBoardComponent {
     if (!this.gameActive) return;
     this.balance += this.reward;
     this.resetGame();
+    this.waiting = false;
   }
 
   resetGame() {

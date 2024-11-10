@@ -138,14 +138,13 @@
 }
 
 #startGame {
-  background-color: #0044ff;
   color: white;
 }
 
 #reward {
-  background-color: #ffcc00;
+  --background: #ffcc00;
   color: #1b0030;
-  display: none;
+  //display: none;
 }
 
 /* Contenedor para "Trampas" con botones de incremento y decremento */
